@@ -1,0 +1,15 @@
+# clusters/my-kind-cluster/test-app.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test-app
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test-pod
+  namespace: test-app
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
