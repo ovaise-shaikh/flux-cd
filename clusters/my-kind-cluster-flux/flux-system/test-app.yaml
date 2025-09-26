@@ -4,12 +4,23 @@ kind: Namespace
 metadata:
   name: test-app
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginx-test-pod
+  name: nginx-deployment
   namespace: test-app
 spec:
-  containers:
-  - name: nginx
-    image: nginx:latest
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
